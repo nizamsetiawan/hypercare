@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477391171380",
+    "project_id": "hypercare-441bf",
+    "storage_bucket": "hypercare-441bf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477391171380:android:1568efd401f9368a5c3f61",
+        "android_client_info": {
+          "package_name": "com.nizamsetiawan.hypercare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrU3z-V4p0q5eA-TBmlW2Hw-3Ryc1CBeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
