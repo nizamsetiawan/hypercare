@@ -12,7 +12,20 @@
           "package_name": "com.nizamsetiawan.hypercare"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "477391171380-st0b724qfv8l8sgbumgn0avq0vkv6a4v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nizamsetiawan.hypercare",
+            "certificate_hash": "e0272936eaa853579fe16e2361c313c2d8c05af4"
+          }
+        },
+        {
+          "client_id": "477391171380-8kq8ch4ui169aphdjoupr0hqrdcvotsd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBrU3z-V4p0q5eA-TBmlW2Hw-3Ryc1CBeQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477391171380-8kq8ch4ui169aphdjoupr0hqrdcvotsd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -41,7 +41,7 @@ class TVerticalImageText extends StatelessWidget {
             ),
 
             ///text
-            const SizedBox(height: TSizes.spaceBtwItems / 2),
+            const SizedBox(height: TSizes.spaceBtwItems / 3),
             SizedBox(
                 width: 55,
                 child: Text(

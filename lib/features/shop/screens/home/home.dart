@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   ///searchbar
-                  TSearchContainer(text: 'Search in store'),
+                  TSearchContainer(text: 'Temukan ketenangan Anda...'),
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   ///categories
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         ///heading of categories
                         TSectionHeading(
-                            title: 'Popular Categories',
+                            title: 'Kategori Mindfulness',
                             showActionButton: false,
                             textColor: Colors.white),
                         SizedBox(height: TSizes.spaceBtwItems),
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   const TPromoSlider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   ///-heading
-                  TSectionHeading(title: 'Popular products', onPressed: () => Get.to(() => const AllProducts())),
+                  TSectionHeading(title: 'Layanan Terbaik', onPressed: () => Get.to(() => const AllProducts())),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   ///popular products

@@ -49,7 +49,7 @@ class StoreScreen extends StatelessWidget {
                         children: [
                           const SizedBox(height: TSizes.spaceBtwItems),
                           const TSearchContainer(
-                              text: 'Search in store',
+                              text: 'Temukan ketenangan Anda...',
                               showBorder: true,
                               showBackground: false,
                               padding: EdgeInsets.zero),
