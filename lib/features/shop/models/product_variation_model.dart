@@ -19,7 +19,8 @@ class ProductVariationModel {
     this.stock = 0,
   });
 
-  static ProductVariationModel empty() => ProductVariationModel(id: '', attributeValues: {});
+  static ProductVariationModel empty() => ProductVariationModel(id: '', attributeValues: {
+  });
 
   ///json format
   toJson() {
@@ -30,6 +31,7 @@ class ProductVariationModel {
       'SalePrice': salePrice,
       'SKU': sku,
       'Stock': stock,
+      'Description': description,
       'AttributeValues': attributeValues,
     };
   }
@@ -43,6 +45,7 @@ class ProductVariationModel {
         price: double.parse((data['Price'] ?? 0.0).toString()),
         sku: data['SKU'] ?? '',
         stock: data['Stock'] ?? 0,
+        description: data['Description'] ?? '',
         salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
         image: data['Image'] ?? '',
         attributeValues: Map<String, String>.from(data['AttributeValues']),

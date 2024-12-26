@@ -13,11 +13,15 @@ import 'package:hypercare/features/shop/screens/order/order.dart';
 import 'package:hypercare/utils/constraints/colors.dart';
 import 'package:hypercare/utils/constraints/sizes.dart';
 
+import '../../../../data/repositories/products/product_repository.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final productRepository = ProductRepository.instance; // Mendapatkan instance repository
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -98,9 +102,10 @@ class SettingsScreen extends StatelessWidget {
                       icon: Iconsax.information,
                       title: 'Tentang',
                       subTitle: 'Informasi tentang aplikasi dan tim pengembang'),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Iconsax.security_user,
                     title: 'Berikan Penilaian',
+                    onTap: (){},
                     subTitle: 'Bantu kami dengan memberikan ulasan di Play Store',
                   ),
                   const TSettingsMenuTile(
