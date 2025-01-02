@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypercare/features/shop/controllers/images_controller.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 import 'package:hypercare/common/widgets/texts/section_heading.dart';
@@ -21,7 +22,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      // bottomNavigationBar: const TBottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -33,8 +34,6 @@ class ProductDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.only(right: TSizes.defaultSpace, left: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
               child: Column(
                 children: [
-                  ///Rating & share button
-                  const TRatingAndShare(),
 
                   ///Price,title,stock & brand
                   TProductMetaData(product: product),
@@ -43,11 +42,13 @@ class ProductDetailScreen extends StatelessWidget {
                   if(product.productType == ProductType.variable.toString()) TProductAttributes(product: product),
                   if(product.productType == ProductType.variable.toString()) const SizedBox(height: TSizes.spaceBtwSections),
 
-                  ///checkout button
-                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Checkout'))),
+                  // /checkout button
+                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){
+                     ImagesController.instance.showVideoPopup(product.videoUrl ?? '');
+                  }, child: const Text('Tonton Video'))),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   ///description
-                  const TSectionHeading(title: 'Description', showActionButton: false),
+                  const TSectionHeading(title: 'Deskripsi', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   ReadMoreText(
                     product.description ?? 'Description is empty',
@@ -58,18 +59,31 @@ class ProductDetailScreen extends StatelessWidget {
                     moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
-
-                  ///reviews
-                  const Divider(),
-                  const SizedBox(height: TSizes.spaceBtwItems),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const TSectionHeading(title: 'Reviews(199)', showActionButton: false),
-                      IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3, size: 18))
-                    ],
-                  ),
                   const SizedBox(height: TSizes.spaceBtwSections),
+                  ///description
+                  const TSectionHeading(title: 'Tujuan', showActionButton: false),
+                  const SizedBox(height: TSizes.spaceBtwItems),
+                  ReadMoreText(
+                    product.purpose ?? 'Purpose is empty',
+                    trimLines: 2,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: '...Show more',
+                    trimExpandedText: ' Less',
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+
+                //   ///reviews
+                //   const Divider(),
+                //   const SizedBox(height: TSizes.spaceBtwItems),
+                //   Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       const TSectionHeading(title: 'Reviews(199)', showActionButton: false),
+                //       IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3, size: 18))
+                //     ],
+                //   ),
+                //   const SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
 

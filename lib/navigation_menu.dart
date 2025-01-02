@@ -30,8 +30,8 @@ class NavigationMenu extends StatelessWidget {
           indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: "Beranda"),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: "Meditasi"),
-            NavigationDestination(icon: Icon(Iconsax.clipboard), label: "Program"),
+            NavigationDestination(icon: Icon(Iconsax.building), label: "Pendidikan"),
+            NavigationDestination(icon: Icon(Iconsax.clock), label: "Alarm"),
             NavigationDestination(icon: Icon(Iconsax.user), label: "Profil"),
 
           ],

@@ -24,7 +24,8 @@ class TProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = product.price.toInt();
+    final duration = product.stock;
     final dark = THelperFunctions.isDarkMode(context);
 
     /// container with  side paddings,color,edges,radius and shadow
@@ -62,7 +63,7 @@ class TProductCardVertical extends StatelessWidget {
                       backgroundColor: TColors.secondary.withOpacity(0.8),
                       padding: const EdgeInsets.symmetric(
                           horizontal: TSizes.sm, vertical: TSizes.xs),
-                      child: Text('$salePercentage%',
+                      child: Text('Hari ke- $salePercentage',
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge!
@@ -74,7 +75,7 @@ class TProductCardVertical extends StatelessWidget {
                   const Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red),
+                    child: TCircularIcon(icon: Iconsax.health, color: Colors.red),
                   ),
                 ],
               ),
@@ -97,46 +98,46 @@ class TProductCardVertical extends StatelessWidget {
             const Spacer(),
 
             ///Price row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ///Price
-                Flexible(
-                  child: Column(
-                    children: [
-                      if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-                        Padding(
-                          padding: const EdgeInsets.only(left: TSizes.sm),
-                          child:  Text(
-                              product.price.toString(),
-                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
-                          ),
-                        ),
-                      ///price, show sale price as main price if sale exists
-                      Padding(
-                        padding: const EdgeInsets.only(left: TSizes.sm),
-                        child:  TProductPriceText(price: controller.getProductPrice(product)),
-                      ),
-                    ],
-                  ),
-                ),
-
-                ///add to cart button
-                Container(
-                  decoration: const BoxDecoration(
-                    color: TColors.dark,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(TSizes.cardRadiusMd),
-                        bottomRight:
-                        Radius.circular(TSizes.productImageRadius)),
-                  ),
-                  child: const SizedBox(
-                      width: TSizes.iconLg * 1.2,
-                      height: TSizes.iconLg * 1.2,
-                      child: Center(child: Icon(Iconsax.add, color: TColors.white))),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     ///Price
+            //     Flexible(
+            //       child: Column(
+            //         children: [
+            //           if(product.productType == ProductType.single.toString() && product.salePrice > 0)
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: TSizes.sm),
+            //               child:  Text(
+            //                   product.price.toString(),
+            //                 style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+            //               ),
+            //             ),
+            //           ///price, show sale price as main price if sale exists
+            //           Padding(
+            //             padding: const EdgeInsets.only(left: TSizes.sm),
+            //             child:  TProductPriceText(price: controller.getProductPrice(product)),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //
+            //     ///add to cart button
+            //     Container(
+            //       decoration: const BoxDecoration(
+            //         color: TColors.dark,
+            //         borderRadius: BorderRadius.only(
+            //             topLeft: Radius.circular(TSizes.cardRadiusMd),
+            //             bottomRight:
+            //             Radius.circular(TSizes.productImageRadius)),
+            //       ),
+            //       child: const SizedBox(
+            //           width: TSizes.iconLg * 1.2,
+            //           height: TSizes.iconLg * 1.2,
+            //           child: Center(child: Icon(Iconsax.add, color: TColors.white))),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

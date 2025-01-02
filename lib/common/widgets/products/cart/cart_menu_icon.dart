@@ -18,7 +18,7 @@ class TCartCounterIcon extends StatelessWidget {
       children: [
         IconButton(
             onPressed: () => Get.to(() => const CartScreen()),
-            icon: Icon(Iconsax.shopping_bag, color: iconColor)),
+            icon: Icon(Iconsax.music, color: iconColor)),
         Positioned(
           right: 0,
           child: Container(
@@ -29,7 +29,7 @@ class TCartCounterIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
-              child: Text('2',
+              child: Text('1',
                   style: Theme.of(context)
                       .textTheme
                       .labelLarge!

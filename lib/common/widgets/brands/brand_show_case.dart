@@ -6,12 +6,18 @@ import 'package:hypercare/utils/constraints/sizes.dart';
 import 'package:hypercare/utils/helpers/helper_functions.dart';
 
 class TBrandShowcase extends StatelessWidget {
+  final List<String> images;
+  final String brandName;
+  final String brandImage;
+  final int productCount;
+
   const TBrandShowcase({
     super.key,
     required this.images,
+    required this.brandName,
+    required this.brandImage,
+    required this.productCount,
   });
-
-  final List<String> images;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +29,21 @@ class TBrandShowcase extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
       child: Column(
         children: [
-          ///brand with products count
-          const TBrandCard(showBorder: false),
+          /// Brand with product count
+          TBrandCard(
+            showBorder: false,
+            brandName: brandName,
+            productCount: productCount,
+            imagePath: brandImage,
+          ),
           const SizedBox(height: TSizes.spaceBtwItems),
 
-          ///brand top three product images
+          /// Brand top three product images
           Row(
-              children: images
-                  .map((image) => brandTopProductImageWidget(image, context))
-                  .toList())
+            children: images
+                .map((image) => brandTopProductImageWidget(image, context))
+                .toList(),
+          ),
         ],
       ),
     );
@@ -46,8 +58,10 @@ class TBrandShowcase extends StatelessWidget {
             : TColors.light,
         margin: const EdgeInsets.only(right: TSizes.sm),
         padding: const EdgeInsets.all(TSizes.md),
-        child:  Image(
-            fit: BoxFit.contain, image: AssetImage(image)),
+        child: Image(
+          fit: BoxFit.contain,
+          image: AssetImage(image),
+        ),
       ),
     );
   }

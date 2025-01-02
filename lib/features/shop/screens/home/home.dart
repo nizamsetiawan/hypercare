@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypercare/common/widgets/custom_shapes/containers/primary_header_container.dart';
@@ -12,6 +13,8 @@ import 'package:hypercare/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:hypercare/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:hypercare/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:hypercare/utils/constraints/sizes.dart';
+
+import '../../../../utils/constraints/text_strings.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,11 +32,9 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   ///appbar
                   THomeAppBar(),
-                  SizedBox(height: TSizes.spaceBtwSections),
-
                   ///searchbar
-                  TSearchContainer(text: 'Temukan ketenangan Anda...'),
-                  SizedBox(height: TSizes.spaceBtwSections),
+                  // TSearchContainer(text: 'Temukan ketenangan Anda...'),
+
 
                   ///categories
                   Padding(
@@ -41,14 +42,14 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         ///heading of categories
-                        TSectionHeading(
-                            title: 'Kategori Mindfulness',
-                            showActionButton: false,
-                            textColor: Colors.white),
-                        SizedBox(height: TSizes.spaceBtwItems),
+                        // TSectionHeading(
+                        //     title: 'Kategori Mindfulness',
+                        //     showActionButton: false,
+                        //     textColor: Colors.white),
+                        // SizedBox(height: TSizes.spaceBtwItems),
 
                         ///categories
-                        THomeCategories(),
+                        // THomeCategories(),
                       ],
                     ),
                   ),
@@ -59,25 +60,37 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              padding: const EdgeInsets.only(left: TSizes.defaultSpace, right: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
               child: Column(
                 children: [
                   const TPromoSlider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
+
                   ///-heading
-                  TSectionHeading(title: 'Layanan Terbaik', onPressed: () => Get.to(() => const AllProducts())),
+                  TSectionHeading(
+                    title: 'Layanan Terbaik',
+                    onPressed: () => Get.to(() => AllProducts(
+                          title: 'Semua Layanan',
+                      // query: FirebaseFirestore.instance.collection('Product').where('IsFeatured', isEqualTo: true),
+                      fetchProductsByQuery: controller.fetchAllFeaturedProducts(),
+                        )),
+                  ),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
                   ///popular products
                   Obx(() {
-                    if(controller.isLoading.value) return const TVerticalProductShimmer();
-                    if(controller.featuredProducts.isEmpty){
-                      return Center(child: Text('No data found!', style: Theme.of(context).textTheme.bodyMedium));
+                    if (controller.isLoading.value)
+                      return const TVerticalProductShimmer();
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(
+                          child: Text('No data found!',
+                              style: Theme.of(context).textTheme.bodyMedium));
                     }
                     return TGridLayout(
                         itemCount: controller.featuredProducts.length,
-                        itemBuilder: (_, index) =>  TProductCardVertical(product: controller.featuredProducts[index]));
-                  } ),
+                        itemBuilder: (_, index) => TProductCardVertical(
+                            product: controller.featuredProducts[index]));
+                  }),
                 ],
               ),
             )
@@ -87,5 +100,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-

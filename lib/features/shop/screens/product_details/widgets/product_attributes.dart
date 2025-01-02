@@ -33,66 +33,66 @@ class TProductAttributes extends StatelessWidget {
               child: Column(
                 children: [
                   ///title,price and stock status
-                  Row(
+                  Column(
                     children: [
-                      const TSectionHeading(
-                          title: 'Variation', showActionButton: false),
+                      // const TSectionHeading(
+                      //     title: 'Teknik', showActionButton: false),
                       const SizedBox(width: TSizes.spaceBtwItems),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              const TProductTitleText(
-                                  title:
-                                      'Price : ',
-                                  smallSize: true),
-                              const SizedBox(width: TSizes.spaceBtwItems),
-
-                              ///actual price
-                              if (controller.selectedVariation.value.salePrice >
-                                  0)
-                                Text(
-                                  '\$${controller.selectedVariation.value.price}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .apply(
-                                          decoration:
-                                              TextDecoration.lineThrough),
-                                ),
-                              const SizedBox(width: TSizes.spaceBtwItems),
-
-                              ///sale price
-                              TProductPriceText(
-                                  price: controller.getVariationPrice()),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     const TProductTitleText(
+                          //         title:
+                          //             'Price : ',
+                          //         smallSize: true),
+                          //     const SizedBox(width: TSizes.spaceBtwItems),
+                          //
+                          //     ///actual price
+                          //     if (controller.selectedVariation.value.salePrice >
+                          //         0)
+                          //       Text(
+                          //         '\$${controller.selectedVariation.value.price}',
+                          //         style: Theme.of(context)
+                          //             .textTheme
+                          //             .titleSmall!
+                          //             .apply(
+                          //                 decoration:
+                          //                     TextDecoration.lineThrough),
+                          //       ),
+                          //     const SizedBox(width: TSizes.spaceBtwItems),
+                          //
+                          //     ///sale price
+                          //     TProductPriceText(
+                          //         price: controller.getVariationPrice()),
+                          //   ],
+                          // ),
 
                           ///stack
                           Row(
                             children: [
-                              const TProductTitleText(
-                                  title:
-                                      'Stock : ',
-                                  smallSize: true),
-                              Text(controller.selectedVariation.value.stock.toString(),
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium),
+                              TProductTitleText(
+                                title:
+                                'Durasi : ${controller.selectedVariation.value.stock.toString()} Menit',
+                                smallSize: true,
+                                maxLines: 50,
+                              ),
                             ],
-                          )
+                          ),
+                          TProductTitleText(
+                            title:
+                            'Materi : ${controller.selectedVariation.value.description}',
+                            smallSize: true,
+                            maxLines: 50,
+                          ),
                         ],
                       ),
                     ],
                   ),
 
                   ///variable description
-                  TProductTitleText(
-                    title:
-                        'Description : ${controller.selectedVariation.value.description}',
-                    smallSize: true,
-                    maxLines: 4,
-                  ),
+
                 ],
               ),
             ),

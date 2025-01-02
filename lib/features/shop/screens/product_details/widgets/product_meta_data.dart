@@ -20,7 +20,9 @@ class TProductMetaData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = product.price.toInt();
+    final duration = product.stock.toString();
+
     final darkMode = THelperFunctions.isDarkMode(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +36,7 @@ class TProductMetaData extends StatelessWidget {
               backgroundColor: TColors.secondary.withOpacity(0.8),
               padding: const EdgeInsets.symmetric(
                   horizontal: TSizes.sm, vertical: TSizes.xs),
-              child: Text('$salePercentage%',
+              child: Text('Hari ke- $salePercentage',
                   style: Theme.of(context)
                       .textTheme
                       .labelLarge!
@@ -42,10 +44,10 @@ class TProductMetaData extends StatelessWidget {
             ),
             const SizedBox(width: TSizes.spaceBtwItems),
             ///price
-            if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-            Text('\$${product.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
-            if(product.productType == ProductType.single.toString() && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems),
-            TProductPriceText(price: controller.getProductPrice(product), isLarge: true),
+            // if(product.productType == ProductType.single.toString() && product.salePrice > 0)
+            // Text('\$${product.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+            // if(product.productType == ProductType.single.toString() && product.salePrice > 0) const SizedBox(width: TSizes.spaceBtwItems),
+            // TProductPriceText(price: controller.getProductPrice(product), isLarge: true),
           ],
         ),
         const SizedBox(width: TSizes.spaceBtwItems / 1.5),
@@ -57,21 +59,19 @@ class TProductMetaData extends StatelessWidget {
         ///stock status
         Row(
           children: [
-            const TProductTitleText(title: 'Status'),
+            const TProductTitleText(title: 'Durasi :'),
             const SizedBox(width: TSizes.spaceBtwItems),
-            Text(controller.getProductStockStatus(product.stock), style: Theme.of(context).textTheme.titleMedium),
+            Text( '${product.stock} Menit' , style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
         const SizedBox(width: TSizes.spaceBtwItems / 1.5),
-        
         ///brand
         Row(
           children: [
             TCircularImage(
                 image: product.brand != null ? product.brand!.image : '',
-              width: 32,
-              height: 32,
-              overlayColor: darkMode ? TColors.white : TColors.black,
+              width: 42,
+              height: 42,
             ),
             TBrandTitleWithVerifiedIcon(title: product.brand != null ? product.brand!.name : '', brandTextSize: TextSizes.medium),
           ],

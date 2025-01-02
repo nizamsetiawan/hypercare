@@ -18,7 +18,7 @@ class ProductController extends GetxController {
   }
 
   void fetchFeaturedProducts() async {
-    try{
+    try {
       //start loading while fetching products
       isLoading.value = true;
 
@@ -34,38 +34,50 @@ class ProductController extends GetxController {
     }
   }
 
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+      //fetch products
+      final products = await productRepository.getFeaturedProducts();
+      return products;
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Oh snap', message: e.toString());
+      return [];
+    }
+  }
+
   /// get product price or price range for variations
   String getProductPrice(ProductModel product) {
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
 
     //if no variations exist return the simple price or sale price
-    if(product.productType == ProductType.single.toString()) {
-      return (product.salePrice > 0 ? product.salePrice : product.price).toString();
+    if (product.productType == ProductType.single.toString()) {
+      return (product.salePrice > 0 ? product.salePrice : product.price)
+          .toString();
     } else {
       //calculate the smallest and largest prices among variations
-      if(product.productVariations != null){
-        for(var variation in product.productVariations!){
+      if (product.productVariations != null) {
+        for (var variation in product.productVariations!) {
           //determine the price to consider(sale price if available, otherwise regular price)
-          double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.price;
+          double priceToConsider =
+              variation.salePrice > 0.0 ? variation.salePrice : variation.price;
 
           //update smallest and largest price
-          if(priceToConsider < smallestPrice) {
+          if (priceToConsider < smallestPrice) {
             smallestPrice = priceToConsider;
           }
 
-          if(priceToConsider > largestPrice) {
+          if (priceToConsider > largestPrice) {
             largestPrice = priceToConsider;
           }
         }
-      }else {
+      } else {
         smallestPrice = 0.0;
         largestPrice = 234;
       }
 
-
       //if smallest and largest price are the same return a single price
-      if(smallestPrice.isEqual(largestPrice)){
+      if (smallestPrice.isEqual(largestPrice)) {
         return largestPrice.toString();
       } else {
         //otherwise return A price range
@@ -76,8 +88,8 @@ class ProductController extends GetxController {
 
   /// calculate discount percentage
   String? calculateSalePercentage(double originalPrice, double? salePrice) {
-    if(salePrice == null || salePrice <= 0.0) return null;
-    if(originalPrice <= 0) return null;
+    if (salePrice == null || salePrice <= 0.0) return null;
+    if (originalPrice <= 0) return null;
 
     double percentage = ((originalPrice - salePrice) / originalPrice) * 100;
     return percentage.toStringAsFixed(0);
@@ -86,6 +98,5 @@ class ProductController extends GetxController {
   /// -- check product stock status
   String getProductStockStatus(int stock) {
     return stock > 0 ? 'In Stock' : 'Out of Stock';
-
   }
 }

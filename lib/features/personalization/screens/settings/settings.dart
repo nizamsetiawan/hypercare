@@ -12,6 +12,7 @@ import 'package:hypercare/features/personalization/screens/profile/profile.dart'
 import 'package:hypercare/features/shop/screens/order/order.dart';
 import 'package:hypercare/utils/constraints/colors.dart';
 import 'package:hypercare/utils/constraints/sizes.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 import '../../../../data/repositories/products/product_repository.dart';
 
@@ -20,7 +21,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productRepository = ProductRepository.instance; // Mendapatkan instance repository
+    final productRepository =
+        ProductRepository.instance;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -58,39 +60,53 @@ class SettingsScreen extends StatelessWidget {
 
                   TSettingsMenuTile(
                     icon: Iconsax.safe_home,
-                    title: 'My Address',
-                    subTitle: 'Set shopping delivery address',
-                    onTap: () => Get.to(() => const UserAddressScreen()),
+                    title: 'Akun Terhubung',
+                    subTitle: 'Kelola akun media sosial dan akun pihak ketiga yang terhubung',
+                    onTap: () => showFeatureUnderDevelopmentDialog(context),
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                       icon: Iconsax.language_square,
                       title: 'Ganti Bahasa',
-                      subTitle: 'Pilih bahasa yang Anda inginkan untuk aplikasi'),
-                   TSettingsMenuTile(
-                      icon: Iconsax.data,
-                      title: 'Unduhan',
-                      subTitle: 'Lihat dan kelola file yang telah diunduh',
-                       onTap: () => Get.to(() => const OrderScreen()),
+                      onTap: () => showFeatureUnderDevelopmentDialog(context),
+                      subTitle:
+                          'Pilih bahasa yang Anda inginkan untuk aplikasi'),
+                  TSettingsMenuTile(
+                    icon: Iconsax.data,
+                    title: 'Unduhan',
+                    subTitle: 'Lihat dan kelola file yang telah diunduh',
+                    onTap: () => showFeatureUnderDevelopmentDialog(context),
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                       icon: Iconsax.support,
                       title: 'Bantuan & Dukungan',
-                      subTitle: 'Temukan jawaban atas pertanyaan Anda atau hubungi dukungan kami'),
-                  const TSettingsMenuTile(
+                      onTap: () => showFeatureUnderDevelopmentDialog(context),
+                      subTitle:
+                          'Temukan jawaban atas pertanyaan Anda atau hubungi dukungan kami'),
+                  TSettingsMenuTile(
                       icon: Iconsax.money,
+                      onTap: () => showFeatureUnderDevelopmentDialog(context),
                       title: 'Langganan Premium',
-                      subTitle: 'Nikmati fitur eksklusif dan lebih banyak manfaat'),
+                      subTitle:
+                          'Nikmati fitur eksklusif dan lebih banyak manfaat'),
                   TSettingsMenuTile(
                     icon: Iconsax.image,
                     title: 'Kualitas Gambar',
                     subTitle: 'Gunakan kualitas gambar tinggi',
-                    trailing: Switch(value: false, onChanged: (value) {}),
+                    trailing: Switch(
+                        value: false,
+                        onChanged: (value) {
+                          showFeatureUnderDevelopmentDialog(context);
+                        }),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.sun,
                     title: 'Mode',
                     subTitle: 'Gunakan mode gelap',
-                    trailing: Switch(value: true, onChanged: (value) {}),
+                    trailing: Switch(
+                        value: true,
+                        onChanged: (value) {
+                          showFeatureUnderDevelopmentDialog(context);
+                        }),
                   ),
 
                   ///-- App settings
@@ -98,28 +114,49 @@ class SettingsScreen extends StatelessWidget {
                   const TSectionHeading(
                       title: 'Tentang Aplikasi', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                       icon: Iconsax.information,
                       title: 'Tentang',
-                      subTitle: 'Informasi tentang aplikasi dan tim pengembang'),
+                      onTap: () => showFeatureUnderDevelopmentDialog(context),
+                      subTitle:
+                          'Informasi tentang aplikasi dan tim pengembang'),
                   TSettingsMenuTile(
                     icon: Iconsax.security_user,
                     title: 'Berikan Penilaian',
-                    onTap: (){},
-                    subTitle: 'Bantu kami dengan memberikan ulasan di Play Store',
+                    onTap: () {
+                      showFeatureUnderDevelopmentDialog(context);
+                    },
+                    subTitle:
+                        'Bantu kami dengan memberikan ulasan di Play Store',
                   ),
                   const TSettingsMenuTile(
                       icon: Iconsax.security_card,
                       title: 'Privasi dan Keamanan',
                       subTitle: 'Kelola privasi dan keamanan akun Anda'),
 
-
                   ///--logout button
-                  const  SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () => AuthenticationRepository.instance.logout(),
+                        onPressed: () {
+                          PanaraConfirmDialog.show(
+                            context,
+                            title: "Konfirmasi Logout",
+                            message: "Apakah Anda yakin ingin logout?",
+                            confirmButtonText: "Keluar",
+                            cancelButtonText: "Batal",
+                            onTapCancel: () {
+                              Navigator.pop(context);
+                            },
+                            onTapConfirm: () {
+                              AuthenticationRepository.instance.logout();
+                            },
+                            panaraDialogType: PanaraDialogType.normal,
+                            barrierDismissible:
+                                false, // optional parameter (default is true)
+                          );
+                        },
                         child: const Text('Logout')),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections * 2.5),
@@ -131,4 +168,18 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void showFeatureUnderDevelopmentDialog(BuildContext context) {
+  PanaraInfoDialog.show(
+    context,
+    title: "Maaf",
+    message: "Fitur ini masih dalam tahap pengembangan",
+    buttonText: "Okay",
+    onTapDismiss: () {
+      Navigator.pop(context);
+    },
+    panaraDialogType: PanaraDialogType.normal,
+    barrierDismissible: false, // Tidak bisa dismiss dengan mengetuk luar
+  );
 }

@@ -7,6 +7,7 @@ import 'package:hypercare/features/authentication/screens/signup/verify_email.da
 import 'package:hypercare/features/personalization/screens/address/address.dart';
 import 'package:hypercare/features/personalization/screens/profile/profile.dart';
 import 'package:hypercare/features/personalization/screens/settings/settings.dart';
+import 'package:hypercare/features/shop/screens/all_products/all_products.dart';
 import 'package:hypercare/features/shop/screens/cart/cart.dart';
 import 'package:hypercare/features/shop/screens/checkout/checkout.dart';
 import 'package:hypercare/features/shop/screens/home/home.dart';

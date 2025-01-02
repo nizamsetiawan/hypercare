@@ -19,6 +19,7 @@ class TImages{
   static const String onBoardingImage3 = "assets/images/on_boarding_images/sammy-line-delivery.json";
 
   // -- Animations
+  static const String noDataIllustration = "assets/images/animations/nodata.json";
   static const String deliveredEmailIllustration = "assets/images/animations/sammy-line-man-receives-a-mail.png";
   static const String staticSuccessIllustration = "assets/images/animations/sammy-line-success.png";
   static const String verifyIllustration = "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
@@ -53,6 +54,7 @@ class TImages{
   static const String furnitureIcon = "assets/icons/categories/icons8-dining-chair-side-vew-64.png";
   static const String jewelryIcon = "assets/icons/categories/icons8-sparkling-diamond-50.png";
   static const String smartphoneIcon = "assets/icons/categories/icons8-smartphone-50.png";
+  static const String calenderIcon = "assets/icons/categories/calender.png";
 
   // -- Banners
   static const String promoBanner1 = "assets/images/products/promo-banner-1.png";
@@ -118,7 +120,9 @@ class TImages{
   static const String productImage32 = "assets/images/products/bedroom_bed.png";
   static const String productImage33 = "assets/images/products/bedroom_lamp.png";
 
-
+//music
+static const String playMusic = "assets/music/relaksasi.mp3";
+static const String iconMusic = "assets/music/music.json";
 
 
 
